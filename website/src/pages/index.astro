@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const docs = await getCollection('docs');
+
+const courses = new Map();
+for (const entry of docs) {
+	const [kind, course, ...rest] = entry.id.split('/');
+	if (kind !== 'cours' || !course) continue;
+	const isOverview = rest.length === 1 && rest[0] === course;
+	const current = courses.get(course);
+	if (!current || isOverview) courses.set(course, entry);
+}
+
+const courseList = [...courses.values()].sort((a, b) => a.id.localeCompare(b.id, 'fr'));
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Mes cours',
+		description: 'Notes de cours en informatique du BUT Informatique.',
+		template: 'splash',
+		prev: false,
+		next: false,
+		hero: {
+			tagline: 'Notes de cours en informatique, cours par cours, annexes comprises.',
+		},
+	}}
+>
+	<CardGrid stagger>
+		{courseList.map((entry) => (
+			<LinkCard title={entry.data.title} href={`${base}${entry.id}/`} />
+		))}
+	</CardGrid>
+</StarlightPage>

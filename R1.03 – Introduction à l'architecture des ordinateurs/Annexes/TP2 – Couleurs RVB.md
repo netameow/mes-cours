@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **TP2 – Représentation des couleurs en RVB (RGB)**. Annexe des chapitres 2 et 8.
 
 ## Notions du TP

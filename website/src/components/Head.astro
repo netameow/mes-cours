@@ -1,0 +1,16 @@
+---
+const route = Astro.locals.starlightRoute;
+const head = route?.head ?? [];
+
+const url = new URL(import.meta.env.BASE_URL, Astro.site ?? Astro.url);
+const base = url.pathname.endsWith("/") ? url.pathname : `${url.pathname}/`;
+const rawHref =
+    route?.id && /^(cours|annexes)\//.test(route.id)
+        ? new URL(`${base}${route.id}.md`, Astro.url).href
+        : undefined;
+---
+
+{head.map(({ tag: Tag, attrs, content }) => (
+    <Tag {...attrs} set:html={content} />
+))}
+{rawHref && <link rel="alternate" type="text/markdown" href={rawHref} />}

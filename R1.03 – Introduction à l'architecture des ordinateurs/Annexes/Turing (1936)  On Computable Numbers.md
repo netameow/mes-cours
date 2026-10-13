@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **A. M. Turing, *On Computable Numbers, with an Application to the Entscheidungsproblem*** – Proceedings of the London Mathematical Society, 1936 (reçu le 28 mai 1936, lu le 12 novembre 1936), 36 pages. Annexe des chapitres 2 et 5.
 
 ## L'idée en bref

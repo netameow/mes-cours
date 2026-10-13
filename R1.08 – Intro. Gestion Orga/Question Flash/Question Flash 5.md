@@ -1,10 +1,3 @@
----
-Last edited time: 2026-10-03T20:16:00
-Tags: []
-Verification: unverified
-Owner:
-  - obsidian
----
 ## R1.08 — Les fonctions dans l'entreprise
 
 ### Direction générale

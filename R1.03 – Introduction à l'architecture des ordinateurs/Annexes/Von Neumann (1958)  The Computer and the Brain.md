@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **John von Neumann, *The Computer and the Brain*** – Yale University Press, 1958 (Silliman Lectures, écrites en 1955-56, inachevées** : Von Neumann est mort le 8 février 1957 ; préface de Klara von Neumann). Scan de 97 pages, OCRé. Annexe des chapitres 4, 5 et 7.
 
 ## L'esprit du livre

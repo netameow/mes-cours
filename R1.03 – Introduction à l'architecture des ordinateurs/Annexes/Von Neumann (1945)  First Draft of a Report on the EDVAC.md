@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **John von Neumann, *First Draft of a Report on the EDVAC*** – 30 juin 1945, contrat W-670-ORD-4926 entre l'Ordnance Department de l'armée américaine et l'École d'électrotechnique de l'Université de Pennsylvanie (216 pages scannées, texte OCRé de qualité moyenne). Annexe des chapitres 1, 3 et 5 : c'est le document fondateur de l'architecture de Von Neumann**.
 
 ## Objet

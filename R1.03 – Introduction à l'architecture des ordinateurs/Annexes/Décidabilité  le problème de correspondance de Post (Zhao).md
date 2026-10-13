@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **Ling Zhao, *Tackling Post's Correspondence Problem*** (Department of Computing Science, University of Alberta ; version étendue d'un article de la conférence *Computers and Games* 2002). Annexe du chapitre 2 (machine de Turing, ce qui n'est pas calculable).
 
 ## Pourquoi cet article dans le cours ?

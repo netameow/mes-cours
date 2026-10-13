@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **TP1 – R1.3 Architecture des ordinateurs : Architecture générale** (révisions, 3 pages, par binôme, Internet autorisé). Annexe des chapitres 2 à 6.
 
 > Les énoncés sont résumés ci-dessous. Les « pistes » sont **mes propres réponses de révision** (calculs refaits à la main, ou notions du cours) et ne sont pas une correction officielle : à vérifier avec ton binôme / l'enseignant.

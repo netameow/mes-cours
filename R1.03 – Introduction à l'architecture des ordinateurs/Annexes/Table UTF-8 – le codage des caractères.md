@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **Annexe du chapitre 2** – document de cours (2 pages) : *Le codage des caractères*.
 
 ## Résumé

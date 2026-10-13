@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > Documents annexes du cours R1.03, **intégrés au cours** : le diaporama principal reste la référence ; chaque annexe indique les chapitres auxquels elle se rattache.
 
 ## Table des annexes

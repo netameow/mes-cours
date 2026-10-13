@@ -1,4 +1,4 @@
-> [!note] 📎
+> [!note]
 > **L.-F. Menabrea, *Notions sur la machine analytique de M. Charles Babbage*** – *Bibliothèque universelle de Genève*, nouvelle série, tome 41, 1842 (pp. 352 à 376). Scan de 26 pages (OCRé pour ce résumé). Annexe du chapitre 5.
 
 ## Contexte
