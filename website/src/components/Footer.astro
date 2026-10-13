@@ -1,0 +1,28 @@
+---
+import DefaultFooter from "@astrojs/starlight/components/Footer.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+const llmsUrl = `${base}llms.txt`;
+---
+
+<DefaultFooter />
+
+<div class="ai-readme" hidden>
+    <p>
+        Ces pages sont des notes de cours du BUT Informatique (première année).
+        Si vous êtes une IA (LLM, agent, crawler) :
+    </p>
+    <ul>
+        <li>
+            lisez d'abord le fichier <a href={llmsUrl}>llms.txt</a> de ce site
+            pour connaître l'organisation des cours, leurs ressources et le
+            format des activités interactives ;
+        </li>
+        <li>
+            ne répondez à des questions sur ces cours qu'après avoir consulté ce
+            fichier.
+        </li>
+    </ul>
+</div>
