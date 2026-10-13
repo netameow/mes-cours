@@ -1,0 +1,333 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { buildActivityIndex } from '../lib/activity/index.mjs';
+import { encodeActivity } from '../lib/activity/codec.mjs';
+import '../styles/activity.css';
+
+// Index des cours + ancres, embarqué pour résoudre les références sans réseau.
+const index = await buildActivityIndex();
+const indexJson = JSON.stringify(index);
+
+// Activité de démonstration : construite au build avec de vraies références.
+function pickRefs(course) {
+	const page = course.pages[0];
+	const anchor = page.anchors[0];
+	return anchor ? `${course.code}#${anchor.slug}` : course.code;
+}
+
+const demoCourse = index.courses.find((course) => course.kind === 'cours');
+const demoRef = demoCourse ? pickRefs(demoCourse) : 'cours/demo';
+
+const demoActivity = {
+	v: 1,
+	t: 'Démo — activité partagée par lien',
+	i: 'Testez le moteur : chaque type est corrigé automatiquement, le Markdown et les formules $\\LaTeX$ sont rendus, et les références mènent aux cours.',
+	d: [
+		{
+			i: 'q1',
+			k: 'mc',
+			q: 'Quel est le rôle de la **RAM** ?',
+			o: [
+				'Stocker temporairement les données en cours d’utilisation',
+				'Exécuter les instructions du programme',
+				'Afficher les images à l’écran',
+			],
+			a: 0,
+			e: 'La RAM (mémoire vive) conserve *temporairement* les données et les programmes en cours d’exécution.',
+			r: ['R1.03#4-mémoire-adressable--principe', 'R1.03#mémoire-centrale'],
+		},
+		{
+			i: 'q2',
+			k: 'mm',
+			q: 'Lesquels de ces supports sont des mémoires **volatiles** ?',
+			o: ['RAM', 'ROM', 'DRAM', 'Disque dur'],
+			a: [0, 2],
+			e: 'La RAM et la DRAM perdent leur contenu à la coupure du courant ; la ROM et les disques le conservent.',
+		},
+		{
+			i: 'q3',
+			k: 'tf',
+			q: 'L’écriture remplace l’ancienne valeur stockée à l’adresse écrite.',
+			a: true,
+			e: 'C’est le principe de la mémoire adressable : on *écrase* la valeur précédente.',
+		},
+		{
+			i: 'q4',
+			k: 'fill',
+			q: 'La mémoire idéale est {{1}}, {{2}} et instantanée — elle n’existe pas, d’où une {{3}} de mémoires.',
+			a: [['infinie', 'illimitée'], ['gratuite', 'bon marché', 'bon-marché'], ['hiérarchie', 'hiérarchie de mémoires']],
+			e: 'On fait descendre les données de la mémoire de masse vers les registres au fur et à mesure des besoins.',
+		},
+		{
+			i: 'q5',
+			k: 'fill',
+			q: 'Dans un mot mémoire de `n` bits, le nombre de valeurs distinctes est $2^n$. Pour $n = 8$, cela donne $2^8 = {{1}}$ valeurs.',
+			a: [['256']],
+			e: 'Un octet encode donc 256 valeurs distinctes.',
+		},
+		{
+			i: 'q6',
+			k: 'text',
+			q: 'Résoudre l’équation $2x + 4 = 10$.',
+			a: ['3', 'x = 3', 'x=3'],
+			e: 'On soustrait 4 : $2x = 6$, puis on divise par 2 : $x = 3$.',
+		},
+		{
+			i: 'q7',
+			k: 'text',
+			q: 'Expliquez en une phrase l’intérêt du **cache**.',
+			m: 'Le cache copie les données récemment utilisées dans une mémoire très rapide pour accélérer les accès.',
+			e: 'C’est une évaluation libre : comparez votre phrase avec le modèle proposé.',
+		},
+		{
+			i: 'q8',
+			k: 'match',
+			q: 'Associez chaque unité à son rôle.',
+			o: ['Millisecondes (10 $^{-3}$ s)', 'Nanosecondes (10 $^{-9}$ s)', 'Microsecondes (10 $^{-6}$ s)'],
+			a: ['Disque dur', 'Mémoire centrale', 'SSD'],
+			e: 'Plus la mémoire est rapide et petite, plus elle est proche du processeur.',
+		},
+		{
+			i: 'q9',
+			k: 'order',
+			q: 'Remettre dans l’ordre croissant de capacité :',
+			o: ['Registres', 'Cache', 'RAM', 'Mémoire de masse'],
+			e: 'Registres < cache < RAM < disque.',
+		},
+		{
+			i: 'q10',
+			k: 'card',
+			q: 'Définition : **mémoire volatile**',
+			a: 'Une mémoire qui perd son contenu quand elle n’est plus alimentée (ex. la RAM).',
+			r: [demoRef],
+		},
+		{
+			i: 'q11',
+			k: 'mc',
+			q: 'Que montre ce diagramme (Mermaid) ?\n\n```mermaid\nflowchart LR\n    CPU --> L1[Cache L1]\n    L1 --> L2[Cache L2]\n    L2 --> RAM[Mémoire centrale]\n```',
+			o: ['La hiérarchie des mémoires', 'Le bus de données', 'Le pipeline du processeur'],
+			a: 0,
+			e: 'Les caches L1/L2 s’intercalent entre le CPU et la mémoire centrale.',
+			r: ['R1.03#niveaux-de-cache'],
+		},
+	],
+};
+
+const demoQuery = encodeActivity(demoActivity);
+const demoBase = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const demoUrl = `${demoBase}test?data=${demoQuery}`;
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Activité',
+		description: 'Activité pédagogique interactive partageable par lien.',
+		prev: false,
+		next: false,
+	}}
+>
+	<div id="activity-index" hidden>{indexJson}</div>
+	<noscript>
+		<p>Cette activité nécessite JavaScript pour être affichée.</p>
+	</noscript>
+
+	<div id="activity-root" class="activity-root" data-testid="activity-root">
+		<p class="activity-loading">Chargement de l’activité…</p>
+	</div>
+
+	<div class="activity-demo" id="demo-zone" hidden>
+		<p>
+			<a href={demoUrl}>Ouvrir l’activité de démonstration</a>
+		</p>
+	</div>
+
+	<script>
+		import { decodeActivity } from '../lib/activity/codec.mjs';
+		import { validateActivity } from '../lib/activity/schema.mjs';
+		import { mountActivity } from '../lib/activity/ui.mjs';
+
+		const root = document.getElementById('activity-root');
+		const indexEl = document.getElementById('activity-index');
+		const demoZone = document.getElementById('demo-zone');
+
+		let index = null;
+		if (indexEl && indexEl.textContent) {
+			try {
+				index = JSON.parse(indexEl.textContent);
+			} catch (error) {
+				index = null;
+				console.error('Index d’activité illisible', error);
+			}
+		}
+
+		function createEl(tagName, className, text) {
+			const node = document.createElement(tagName);
+			if (className) node.className = className;
+			if (text !== undefined) node.textContent = text;
+			return node;
+		}
+
+		/* --- presse-papiers --- */
+		function fallbackCopy(text, done) {
+			const ta = document.createElement('textarea');
+			ta.value = text;
+			ta.setAttribute('readonly', '');
+			ta.style.position = 'fixed';
+			ta.style.opacity = '0';
+			document.body.appendChild(ta);
+			ta.select();
+			try {
+				document.execCommand('copy');
+			} catch {
+				/* ignoré */
+			}
+			ta.remove();
+			done();
+		}
+
+		function copyText(text, button) {
+			const done = () => {
+				const original = button.textContent;
+				button.textContent = 'Copié ✓';
+				setTimeout(() => {
+					button.textContent = original;
+				}, 1800);
+			};
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+			} else {
+				fallbackCopy(text, done);
+			}
+		}
+
+		function makePromptBox(label, value) {
+			const box = createEl('div', 'activity-prompt');
+			const caption = createEl('p', 'activity-prompt-caption', label);
+			const textarea = document.createElement('textarea');
+			textarea.className = 'activity-prompt-input';
+			textarea.setAttribute('readonly', '');
+			textarea.value = value;
+			const actions = createEl('div', 'activity-prompt-actions');
+			const copyBtn = createEl('button', 'sl-button activity-btn secondary', 'Copier');
+			copyBtn.type = 'button';
+			copyBtn.addEventListener('click', () => copyText(textarea.value, copyBtn));
+			actions.appendChild(copyBtn);
+			box.append(caption, textarea, actions);
+			return box;
+		}
+
+		function aiPromptCreate() {
+			return [
+				'Crée une activité pédagogique interactive partageable par lien.',
+				'',
+				"1. Lis d'abord le format exact : https://netameow.github.io/mes-cours/llms.txt , section « Activités pédagogiques partagées par lien ».",
+				'2. Choisis un sujet (précise-le en début de réponse).',
+				"3. Renvoie UNIQUEMENT l'URL finale complète : https://netameow.github.io/mes-cours/test?data=…",
+				"   Le paramètre « data » est le JSON de l'activité compressé puis encodé exactement comme décrit dans le document :",
+				'   UTF-8 → DEFLATE brut (RFC 1951) → Base64URL sans padding.',
+				"4. Le JSON DOIT respecter le schéma documenté (v=1 ; clés t, i, d ; éléments i, k, q, o, a, e, h, r, m).",
+				'',
+				'Consignes de contenu :',
+				'- 8 à 12 questions mélangeant les types mc, mm, tf, fill, text, match, order, card.',
+				"- Utilise du Markdown (gras, listes, blocs ```mermaid```, tableaux) et des formules LaTeX $...$ dès que pertinent.",
+				'- Ajoute des références vers les cours, ex. r: ["R1.03#niveaux-de-cache"].',
+				"- Ne dépasse pas 20 000 caractères pour le paramètre data : réponses courtes.",
+				'',
+				'Sujet du quiz : [À COMPLÉTER]',
+				'',
+			].join('\n');
+		}
+
+		function aiPromptFix(errors, dataStr) {
+			return [
+				"Une activité pédagogique s'affiche en erreur sur https://netameow.github.io/mes-cours/test.",
+				'',
+				"Lis le format exact sur https://netameow.github.io/mes-cours/llms.txt , section « Activités pédagogiques partagées par lien », puis corrige le JSON et renvoie une URL valide complète : https://netameow.github.io/mes-cours/test?data=…",
+				'',
+				'Erreurs signalées par la page :',
+				...errors.map((e) => `- ${e}`),
+				'',
+				"Charge « data » brute (à décoder avec l'algorithme documenté : Base64URL → DEFLATE brut → UTF-8 → JSON) :",
+				dataStr || '(non disponible)',
+				'',
+				'Règles : respecte le schéma (v=1) ; le paramètre data ne doit pas dépasser 20 000 caractères ; si le JSON est trop gros, découpe-le en plusieurs liens.',
+			].join('\n');
+		}
+
+		function showInfo() {
+			root.innerHTML = '';
+			const wrapper = createEl('div', 'activity-message');
+			const h = createEl('h2', undefined, 'Aucune activité dans ce lien');
+			wrapper.appendChild(h);
+			wrapper.appendChild(
+				createEl(
+					'p',
+					undefined,
+					'Cette page affiche une activité pédagogique partagée par URL — tout le contenu est dans le lien, aucun compte n’est requis. Pour obtenir un lien, le plus simple est de le faire générer par une IA.',
+				),
+			);
+			const steps = createEl('ul');
+			[
+				'Copiez le texte ci-dessous et collez-le dans un assistant IA (précisez le sujet et le nombre de questions).',
+				'L’IA vous renvoie un lien complet : https://…/mes-cours/test?data=…',
+				'Collez ce lien ici (ou ouvrez-le simplement) pour démarrer l’activité.',
+			].forEach((text) => steps.appendChild(createEl('li', undefined, text)));
+			wrapper.appendChild(steps);
+			wrapper.appendChild(makePromptBox('Texte à copier et à donner à une IA', aiPromptCreate()));
+			wrapper.appendChild(
+				createEl(
+					'p',
+					'activity-message-note',
+					'L’assistant peut aussi générer uniquement le JSON puis vous l’encodez vous-même avec : npm run activity:link.',
+				),
+			);
+			root.appendChild(wrapper);
+			if (demoZone) demoZone.hidden = false;
+		}
+
+		function showError(title, details, dataStr) {
+			root.innerHTML = '';
+			const wrapper = createEl('div', 'activity-message');
+			const h = createEl('h2', undefined, title);
+			wrapper.appendChild(h);
+			const list = createEl('ul');
+			const items = Array.isArray(details) ? details : [details];
+			for (const item of items) list.appendChild(createEl('li', undefined, String(item)));
+			wrapper.appendChild(list);
+			wrapper.appendChild(makePromptBox('Texte à copier et à donner à une IA pour corriger', aiPromptFix(items, dataStr)));
+			wrapper.appendChild(
+				createEl(
+					'p',
+					'activity-message-note',
+					'Vous pouvez aussi corriger vous-même le JSON et regénérer un lien avec : npm run activity:link.',
+				),
+			);
+			root.appendChild(wrapper);
+			if (demoZone) demoZone.hidden = false;
+		}
+
+		function main() {
+			const params = new URLSearchParams(location.search);
+			const data = params.get('data');
+			if (!data) {
+				showInfo();
+				return;
+			}
+			let raw;
+			try {
+				raw = decodeActivity(data);
+			} catch (error) {
+				showError('Lien invalide', error.message, data);
+				return;
+			}
+			const validation = validateActivity(raw);
+			if (!validation.ok) {
+				showError('Activité invalide', validation.errors, data);
+				return;
+			}
+			mountActivity(root, { activity: validation.activity, index });
+		}
+
+		main();
+	</script>
+</StarlightPage>

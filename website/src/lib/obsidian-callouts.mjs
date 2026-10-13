@@ -48,6 +48,11 @@ const ICONS = {
 
 const MARKER = /^\[!([A-Za-z][A-Za-z0-9-]*)\]([+-]?)/;
 
+export const CALL_OUT_VARIANTS = CALLOUT_VARIANTS;
+export const DEFAULT_CALLOUT_TITLES = DEFAULT_TITLES;
+export const CALL_OUT_ICONS = ICONS;
+export const CALL_OUT_MARKER = MARKER;
+
 function element(tagName, properties, children) {
 	return {
 		type: 'paragraph',

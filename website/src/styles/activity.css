@@ -1,0 +1,559 @@
+/* Styles de la page d'activités (`/test`).
+   Utilise les variables de thème de Starlight (`--sl-color-*`) pour s'adapter
+   au thème clair/sombre et à la personnalisation du site. */
+
+.activity-root {
+	display: block;
+}
+
+.activity-loading {
+	color: var(--sl-color-muted);
+}
+
+/* --- messages (erreurs, « aucune activité ») --- */
+.activity-message {
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.5rem;
+	padding: 1rem 1.25rem;
+	margin-block: 1rem;
+	background: var(--sl-color-bg-nav);
+}
+.activity-message h2 {
+	margin-block-start: 0;
+	font-size: 1.15rem;
+}
+.activity-message-note {
+	color: var(--sl-color-muted);
+	font-size: 0.9rem;
+}
+.activity-demo a {
+	font-weight: 600;
+}
+
+/* --- zone « demander à une IA » / « copier pour l'IA » --- */
+.activity-prompt {
+	margin-block: 1rem 0.5rem;
+}
+.activity-prompt-caption {
+	font-size: 0.9rem;
+	font-weight: 600;
+	margin-block: 0 0.35rem;
+}
+.activity-prompt-input {
+	width: 100%;
+	min-height: 8rem;
+	font-family: inherit;
+	font-size: 0.85rem;
+	line-height: 1.45;
+	color: var(--sl-color-text);
+	background: var(--sl-color-bg);
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.5rem;
+	padding: 0.6rem 0.7rem;
+	resize: vertical;
+}
+.activity-prompt-input:focus-visible {
+	outline: 2px solid var(--sl-color-accent);
+	outline-offset: 2px;
+}
+.activity-prompt-actions {
+	margin-block-start: 0.4rem;
+}
+
+/* --- en-tête --- */
+.activity-header {
+	margin-block-end: 1rem;
+}
+.activity-title {
+	margin-block-end: 0.35rem;
+}
+.activity-score {
+	color: var(--sl-color-muted);
+	font-size: 0.95rem;
+	margin-block-start: 0.25rem;
+}
+
+/* --- progression --- */
+.activity-dots {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1rem;
+}
+.activity-dot {
+	width: 1.1rem;
+	height: 1.1rem;
+	border-radius: 999px;
+	border: 2px solid var(--sl-color-hairline);
+	background: transparent;
+	cursor: pointer;
+	padding: 0;
+	transition: background 0.15s ease, border-color 0.15s ease;
+}
+.activity-dot:hover,
+.activity-dot:focus-visible {
+	border-color: var(--sl-color-accent);
+}
+.activity-dot.is-current {
+	border-color: var(--sl-color-accent);
+	background: var(--sl-color-accent);
+}
+.activity-dot.is-correct {
+	background: var(--sl-color-green);
+	border-color: var(--sl-color-green);
+}
+.activity-dot.is-incorrect {
+	background: var(--sl-color-red);
+	border-color: var(--sl-color-red);
+}
+
+/* --- carte --- */
+.activity-card {
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.75rem;
+	padding: 1.25rem 1.25rem 1rem;
+	background: var(--sl-color-bg-nav);
+}
+.activity-meta {
+	color: var(--sl-color-muted);
+	font-size: 0.85rem;
+	margin-block: 0 0.6rem;
+}
+.activity-question {
+	margin-block-end: 0.9rem;
+}
+.activity-question p:last-child,
+.fill-statement > p:last-child,
+.order-markdown > p:last-child,
+.match-left > p:last-child {
+	margin-block-end: 0;
+}
+
+/* --- saisies --- */
+.options-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-block-end: 0.9rem;
+}
+.option {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.6rem;
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.5rem;
+	padding: 0.55rem 0.7rem;
+	cursor: pointer;
+	transition: border-color 0.15s ease, background 0.15s ease;
+}
+.option:hover {
+	border-color: var(--sl-color-accent);
+}
+.option:has(input:checked) {
+	border-color: var(--sl-color-accent);
+	background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
+}
+.option input {
+	margin-block-start: 0.2rem;
+	accent-color: var(--sl-color-accent);
+	flex: none;
+}
+.option input:focus-visible,
+.fill-input:focus-visible,
+.text-answer:focus-visible,
+select:focus-visible {
+	outline: 2px solid var(--sl-color-accent);
+	outline-offset: 2px;
+}
+.option-markdown {
+	flex: 1;
+}
+.option-markdown > p {
+	margin-block: 0;
+}
+
+.fill-input {
+	display: inline-block;
+	max-width: 12rem;
+	width: auto;
+	font-family: inherit;
+	font-size: 0.95em;
+	color: var(--sl-color-text);
+	background: var(--sl-color-bg);
+	border: 0;
+	border-bottom: 2px dotted var(--sl-color-muted);
+	padding: 0.1rem 0.35rem;
+	margin-inline: 0.15rem;
+}
+.fill-input:focus {
+	border-bottom-style: solid;
+	border-color: var(--sl-color-accent);
+	outline: none;
+}
+
+.text-answer {
+	width: 100%;
+	font-family: inherit;
+	font-size: 1rem;
+	color: var(--sl-color-text);
+	background: var(--sl-color-bg);
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.5rem;
+	padding: 0.5rem 0.65rem;
+	resize: vertical;
+}
+
+/* --- association --- */
+.match-table {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-block-end: 0.9rem;
+}
+.match-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.75rem;
+	align-items: center;
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.5rem;
+	padding: 0.5rem 0.7rem;
+}
+.match-left > p {
+	margin-block: 0;
+}
+.match-right select {
+	width: 100%;
+	font-family: inherit;
+	font-size: 0.95rem;
+	color: var(--sl-color-text);
+	background: var(--sl-color-bg);
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.4rem;
+	padding: 0.35rem 0.5rem;
+}
+.match-correct-left,
+.match-correct-right {
+	display: inline-block;
+}
+.match-correct-arrow {
+	margin-inline: 0.4rem;
+	color: var(--sl-color-muted);
+}
+
+/* --- mise en ordre --- */
+.order-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 0.9rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.order-row {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.5rem;
+	padding: 0.5rem 0.7rem;
+	background: var(--sl-color-bg);
+}
+.order-index {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.6rem;
+	height: 1.6rem;
+	border-radius: 999px;
+	background: var(--sl-color-gray-5);
+	color: var(--sl-color-text);
+	font-size: 0.8rem;
+}
+.order-markdown {
+	flex: 1;
+}
+.order-markdown > p {
+	margin-block: 0;
+}
+.order-controls {
+	display: inline-flex;
+	gap: 0.3rem;
+	flex: none;
+}
+.order-btn {
+	width: 2rem;
+	height: 2rem;
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.4rem;
+	background: var(--sl-color-bg-nav);
+	color: var(--sl-color-text);
+	cursor: pointer;
+	font-size: 0.9rem;
+}
+.order-btn:hover {
+	border-color: var(--sl-color-accent);
+}
+.order-btn:disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+/* --- flashcard --- */
+.flashcard {
+	margin-block-end: 0.9rem;
+}
+.flashcard-face {
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.75rem;
+	padding: 1rem 1.1rem;
+	background: var(--sl-color-bg);
+}
+.flashcard-label {
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--sl-color-muted);
+	margin-block: 0 0.35rem;
+}
+.flashcard-front .sl-button,
+.flashcard-front .activity-btn {
+	margin-block-start: 0.75rem;
+}
+.flashcard:not(.is-flipped) .flashcard-back {
+	display: none;
+}
+.flashcard.is-flipped .flashcard-front {
+	display: none;
+}
+
+/* --- boutons d'action --- */
+.activity-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-block-start: 0.9rem;
+}
+.activity-btn {
+	font-family: inherit;
+	font-size: 0.92rem;
+	border-radius: 0.5rem;
+	padding: 0.5rem 0.9rem;
+	cursor: pointer;
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.activity-btn.primary {
+	background: var(--sl-color-accent);
+	color: var(--sl-color-text-invert);
+	border: 1px solid var(--sl-color-accent);
+}
+.activity-btn.primary:hover {
+	background: var(--sl-color-accent-high);
+}
+.activity-btn.secondary {
+	background: transparent;
+	color: var(--sl-color-text);
+	border: 1px solid var(--sl-color-hairline);
+}
+.activity-btn.secondary:hover {
+	border-color: var(--sl-color-accent);
+}
+.activity-btn:disabled {
+	opacity: 0.45;
+	cursor: default;
+}
+
+/* --- retour --- */
+.activity-feedback {
+	margin-block-start: 1rem;
+	padding-block-start: 0.75rem;
+	border-top: 1px dashed var(--sl-color-hairline);
+}
+.feedback-badge {
+	display: inline-block;
+	font-weight: 700;
+	border-radius: 0.35rem;
+	padding: 0.2rem 0.55rem;
+	margin-block: 0 0.6rem;
+}
+.feedback-badge.correct {
+	background: var(--sl-color-green);
+	color: var(--sl-color-black);
+}
+.feedback-badge.partial {
+	background: var(--sl-color-orange);
+	color: var(--sl-color-black);
+}
+.feedback-badge.incorrect {
+	background: var(--sl-color-red);
+	color: var(--sl-color-white);
+}
+.feedback-badge.incomplete {
+	background: var(--sl-color-gray-5);
+	color: var(--sl-color-text);
+}
+.feedback-badge.self {
+	background: var(--sl-color-blue);
+	color: var(--sl-color-black);
+}
+.feedback-label {
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--sl-color-muted);
+	margin-block: 0.5rem 0.3rem;
+}
+.feedback-note {
+	color: var(--sl-color-muted);
+}
+.activity-explanation,
+.activity-correct-answer,
+.text-model {
+	margin-block: 0.25rem 0.5rem;
+}
+.self-eval {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-block: 0.6rem 0.2rem;
+}
+
+/* --- références --- */
+.reference-list {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+.reference-missing {
+	color: var(--sl-color-muted);
+	font-size: 0.9rem;
+}
+.reference-missing-label::after {
+	content: ': ';
+}
+.order-correct,
+.match-correct {
+	margin-block: 0.3rem 0.5rem;
+}
+
+/* --- bilan --- */
+.activity-final-score {
+	font-size: 1.05rem;
+	font-weight: 600;
+}
+.final-list {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+.final-list li {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+.final-status {
+	flex: none;
+	width: 1.1rem;
+	text-align: center;
+	font-weight: 700;
+}
+.final-status.correct {
+	color: var(--sl-color-green);
+}
+.final-status.incorrect {
+	color: var(--sl-color-red);
+}
+.final-link {
+	flex: 1;
+	text-align: left;
+	background: transparent;
+	border: none;
+	border-bottom: 1px dashed var(--sl-color-hairline);
+	color: var(--sl-color-text);
+	padding: 0.3rem 0.1rem;
+	cursor: pointer;
+	font-family: inherit;
+}
+.final-link:hover {
+	color: var(--sl-color-accent);
+}
+
+/* --- formules : éviter les débordements --- */
+.activity-root .katex-display {
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 0.15em 0;
+}
+
+/* --- coloration syntaxique (lowlight/highlight.js) --- */
+.activity-root pre {
+	overflow-x: auto;
+}
+.activity-root pre code.hljs {
+	background: transparent;
+}
+.hljs-comment,
+.hljs-quote {
+	color: var(--sl-color-muted);
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-meta .hljs-keyword,
+.hljs-doctag,
+.hljs-section,
+.hljs-attribute,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+	color: var(--sl-color-purple);
+}
+.hljs-built_in,
+.hljs-type,
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.function_,
+.hljs-code {
+	color: var(--sl-color-blue);
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-meta .hljs-string {
+	color: var(--sl-color-green);
+}
+.hljs-number,
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet {
+	color: var(--sl-color-orange);
+}
+.hljs-variable,
+.hljs-template-variable,
+.hljs-deletion,
+.hljs-attr {
+	color: var(--sl-color-red);
+}
+.hljs-emphasis {
+	font-style: italic;
+}
+.hljs-strong {
+	font-weight: 700;
+}
+
+@media (max-width: 640px) {
+	.match-row {
+		grid-template-columns: 1fr;
+	}
+	.order-row {
+		flex-wrap: wrap;
+	}
+}

@@ -1,0 +1,26 @@
+/* Diagrammes Mermaid (voir `src/lib/mermaid.mjs` et `src/lib/mermaid-client.mjs`). */
+
+.mermaid {
+	margin: 1.5rem 0;
+	overflow-x: auto;
+}
+
+/* État non rendu (avant l'exécution de Mermaid) : le code reste lisible. */
+.mermaid:not(.mermaid-rendered) {
+	font-family: var(--sl-font-mono, ui-monospace, monospace);
+	white-space: pre;
+}
+
+.mermaid-rendered {
+	display: flex;
+	justify-content: center;
+}
+
+.mermaid svg {
+	max-width: 100%;
+	height: auto;
+}
+
+.mermaid-error {
+	color: var(--sl-color-red-high, inherit);
+}

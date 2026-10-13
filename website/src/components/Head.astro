@@ -14,3 +14,8 @@ const rawHref =
     <Tag {...attrs} set:html={content} />
 ))}
 {rawHref && <link rel="alternate" type="text/markdown" href={rawHref} />}
+<script>
+    import { setupMermaid } from '../lib/mermaid-client.mjs';
+
+    setupMermaid();
+</script>

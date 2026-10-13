@@ -93,6 +93,9 @@ export function buildSidebar() {
 	];
 }
 
+const INDEX_LABEL = 'Index';
+const INDEX_ATTR = 'data-index-page';
+
 function sectionItems(entries) {
 	const courses = new Map();
 	for (const entry of entries) {
@@ -106,17 +109,38 @@ function sectionItems(entries) {
 		.sort((a, b) => fileCollator.compare(a.label, b.label))
 		.map((course) => ({
 			label: course.label,
-			items: courseNodes(course.entries),
+			items: courseNodes(course.entries, course.label),
 		}));
 }
 
-function courseNodes(entries) {
+function isIndexEntry(entry, dirName) {
+	return slugify(entry.title) === slugify(dirName);
+}
+
+function pageLink(entry) {
+	return { label: entry.title, link: `/${entry.id}/` };
+}
+
+function indexLink(entry) {
+	return { label: INDEX_LABEL, link: `/${entry.id}/`, attrs: { [INDEX_ATTR]: '' } };
+}
+
+function entryLink(entry, dirName) {
+	return isIndexEntry(entry, dirName) ? indexLink(entry) : pageLink(entry);
+}
+
+function sortWithIndexFirst(entries, dirName) {
+	const sorted = [...entries].sort((a, b) => fileCollator.compare(a.title, b.title));
+	const indexAt = sorted.findIndex((entry) => isIndexEntry(entry, dirName));
+	if (indexAt > 0) sorted.unshift(sorted.splice(indexAt, 1)[0]);
+	return sorted;
+}
+
+function courseNodes(entries, dirName) {
 	/** @type {Map<string, typeof entries>} */
 	const dirs = new Map();
 	/** @type {typeof entries} */
 	const pages = [];
-	/** @type {Map<string, string>} */
-	const dirLabels = new Map();
 
 	for (const entry of entries) {
 		const rest = entry.rel.split('/').slice(1);
@@ -125,31 +149,25 @@ function courseNodes(entries) {
 			continue;
 		}
 		const dir = rest[0];
-		if (!dirs.has(dir)) {
-			dirs.set(dir, []);
-			dirLabels.set(dir, dir);
-		}
+		if (!dirs.has(dir)) dirs.set(dir, []);
 		dirs.get(dir).push(entry);
 	}
 
-	/** @type {{ sort: string, node: object }[]} */
+	/** @type {{ sort: string, index?: boolean, node: object }[]} */
 	const nodes = [];
 	for (const [dir, list] of dirs) {
 		nodes.push({
-			sort: dirLabels.get(dir) ?? dir,
-			node: { label: dirLabels.get(dir) ?? dir, items: list.map(pageLink) },
+			sort: dir,
+			node: { label: dir, items: sortWithIndexFirst(list, dir).map((entry) => entryLink(entry, dir)) },
 		});
 	}
 	for (const entry of pages) {
-		nodes.push({ sort: entry.title, node: pageLink(entry) });
+		nodes.push({ sort: entry.title, index: isIndexEntry(entry, dirName), node: entryLink(entry, dirName) });
 	}
 	nodes.sort((a, b) => fileCollator.compare(a.sort, b.sort));
-	return nodes.map((node) => node.node);
-}
 
-/**
- * @param {{ id: string, title: string }} entry
- */
-function pageLink(entry) {
-	return { label: entry.title, link: `/${entry.id}/` };
+	const indexAt = nodes.findIndex((node) => node.index);
+	if (indexAt > 0) nodes.unshift(nodes.splice(indexAt, 1)[0]);
+
+	return nodes.map((node) => node.node);
 }

@@ -6,6 +6,11 @@ import { satteri } from '@astrojs/markdown-satteri';
 import { SIDEBAR_SYNC_FILE, buildSidebar, vaultSignature } from './src/lib/vault.mjs';
 import { obsidianCallouts } from './src/lib/obsidian-callouts.mjs';
 import { mathKatex } from './src/lib/math-katex.mjs';
+import { mermaidDiagrams } from './src/lib/mermaid.mjs';
+import { wikiLinks } from './src/lib/wiki-links.mjs';
+
+const SITE = 'https://netameow.github.io';
+const BASE = '/mes-cours';
 
 function vaultSidebarWatch() {
 	return {
@@ -28,20 +33,21 @@ export default defineConfig({
 	markdown: {
 		processor: satteri({
 			features: { math: true },
-			mdastPlugins: [obsidianCallouts, mathKatex],
+			mdastPlugins: [obsidianCallouts, mathKatex, mermaidDiagrams, wikiLinks({ base: BASE })],
 		}),
 	},
-	site: 'https://netameow.github.io',
-	base: '/mes-cours',
+	site: SITE,
+	base: BASE,
 	integrations: [
 		vaultSidebarWatch(),
 		starlight({
 			title: 'Mes cours',
 			description: 'Notes de cours en informatique',
 			defaultLocale: 'fr',
-			customCss: ['katex/dist/katex.min.css'],
+			customCss: ['katex/dist/katex.min.css', './src/styles/mermaid.css'],
 			components: {
 				Head: './src/components/Head.astro',
+				Sidebar: './src/components/Sidebar.astro',
 			},
 			favicon: '/favicon.svg',
 			disable404Route: true,
