@@ -238,7 +238,7 @@ Inverser par Gauss-Jordan (puis vérifier $MM^{-1}=I$) :
 
 ### Exercice récapitulatif (parties 2 et 3)
 
-Soit $N=\begin{pmatrix}-1&1&0\\-3&4&-3\\0&1&-1\end{pmatrix}$ et $M=\begin{pmatrix}0&1&-1\\-3&4&-3\\-1&1&0\end{pmatrix}$ (voir [[2 – Inverse matriciel]]).
+Soit $N=\begin{pmatrix}-1&1&0\\-3&4&-3\\0&1&-1\end{pmatrix}$ et $M=\begin{pmatrix}0&1&-1\\-3&4&-3\\-1&1&0\end{pmatrix}$ (voir [[2 – Matrices]]).
 
 $N$ s'obtient de $M$ en **échangeant les lignes 1 et 3**, donc $N=PM$ avec $P=\begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix}$.
 
