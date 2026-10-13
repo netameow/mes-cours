@@ -17,12 +17,36 @@ const ACTIVITY_EXAMPLE = {
 export const GET: APIRoute = async () => {
 	const { kinds } = await loadIndex();
 
-	const lines = [
+	const siteBase = absoluteUrl('');
+	const testLink = `${siteBase.replace(/\/$/, '')}/test?data=…`;
+	const decisionBlock = [
+		'# Mes Cours — Générateur d\'activités',
+		'',
+		'> RÈGLE PRIORITAIRE : quand l\'utilisateur demande un quiz, un exercice ou une',
+		'> activité interactive « pour Mes Cours » ou pour ce site, tu DOIS produire un',
+		`> lien \`${testLink}\` conforme au format de la section`,
+		'> « Activités pédagogiques partagées par lien » ci-dessous.',
+		'> N\'utilise PAS de quiz natif, d\'artifact, de widget ou de format maison.',
+		'> Le livrable final est UNIQUEMENT ce lien.',
+		'',
+		'> POURQUOI : les quiz natifs ne supportent pas le LaTeX complet, les 8 types',
+		'> d\'exercices (match, order, card…), ni le suivi de progression de ce site.',
+		'> Un quiz produit autrement ne sera pas lisible par l\'application.',
+		'',
+		'> QUAND : utilise ce système dès que l\'utilisateur dit « quiz Mes Cours »,',
+		'> « activité », « exercice interactif », « lien de test », ou colle l\'URL du site',
+		'> ou un extrait de cours.',
+		'',
+	];
+
+	const lines = [...decisionBlock];
+
+	lines.push(
 		'# Mes cours',
 		'',
 		"> Notes de cours du BUT Informatique (première année, R1), organisées par matière. Chaque lien pointe vers la version Markdown brut de la note ; sa page HTML s'obtient en retirant le suffixe `.md`.",
 		'',
-	];
+	);
 
 	for (const kind of kinds) {
 		if (kind.courses.size === 0) continue;
@@ -44,10 +68,10 @@ export const GET: APIRoute = async () => {
 		'',
 	);
 
-	const exampleUrl = encodeActivityUrl(ACTIVITY_EXAMPLE, absoluteUrl(''));
+	const exampleUrl = encodeActivityUrl(ACTIVITY_EXAMPLE, siteBase);
 	const exampleJson = JSON.stringify(ACTIVITY_EXAMPLE, null, 2);
 	const indexUrl = absoluteUrl('activity-index.json');
-	const activityDoc = activitySystemDoc({ base: absoluteUrl(''), exampleUrl, exampleJson, indexUrl });
+	const activityDoc = activitySystemDoc({ base: siteBase, exampleUrl, exampleJson, indexUrl });
 
 	lines.push(activityDoc.trimStart().trimEnd(), '');
 

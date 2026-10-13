@@ -1,0 +1,25 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import ActivityEncoder from '../components/ActivityEncoder.astro';
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Encodeur d’activités',
+		description: 'Transforme le JSON d’une activité en lien partageable.',
+		prev: false,
+		next: false,
+	}}
+>
+	<p>
+		Transforme le JSON d'une activité en lien partageable <code>/test?data=…</code>. Tout se
+		passe dans votre navigateur : aucun contenu quitte la page.
+	</p>
+	<p>
+		Mode « IA » : appelez cette page directement avec le JSON dans l'URL —
+		<code>/encode?json=…</code> (JSON encodé en URL, <code>encodeURIComponent</code>) — le lien
+		final s'affiche automatiquement.
+	</p>
+
+	<ActivityEncoder />
+</StarlightPage>

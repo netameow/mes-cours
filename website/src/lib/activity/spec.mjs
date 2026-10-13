@@ -17,6 +17,8 @@ export function activitySystemDoc(options) {
 	const slashless = base.endsWith('/') ? base.slice(0, -1) : base;
 	const page = `${slashless}/test`;
 	const pageWithData = `${page}?data=…`;
+	const encodeUrl = `${slashless}/encode?json=<le JSON, encodé en URL>`;
+	const importUrl = `${slashless}/import`;
 
 	return `
 ## Activités pédagogiques partagées par lien
@@ -24,6 +26,17 @@ export function activitySystemDoc(options) {
 Le site permet de partager des **activités interactives** (quiz, flashcards,
 exercices) par simple URL. Une activité est un objet JSON versionné, compressé
 puis encodé dans le paramètre \`data\` de la page \`${pageWithData}\`.
+
+### Pourquoi ce format
+
+Les quiz natifs des assistants ne supportent ni le LaTeX complet, ni les
+huit types d’exercices (match, order, card…), ni le suivi de progression
+proposé par ce site. Un quiz généré hors de ce format ne sera pas lisible
+par l’application.
+
+Règles de déclenchement : utiliser ce système dès que l’utilisateur dit
+« quiz Mes Cours », « activité », « exercice interactif », « lien de test »,
+ou colle l’URL du site (\`${slashless}\`).
 
 ### 1. Objectif
 
@@ -40,6 +53,13 @@ ${pageWithData}
 
 Le site est hébergé sous le préfixe \`/mes-cours/\`. Un lien invalide,
 tronqué ou trop long affiche une erreur explicative.
+
+Pour **produire** un lien sans écrire soi-même l’encodeur :
+
+- **encodeur web (aucun code)** : \`${encodeUrl}\` — la page valide le JSON,
+  le compresse et affiche le lien \`test?data=…\` final ;
+- **collage manuel** : \`${importUrl}\` — on colle le JSON et on obtient le lien ;
+- **outil local** : \`npm run activity:link -- activite.json\`.
 
 ### 3. Format JSON versionné (clés compactes)
 
@@ -182,7 +202,7 @@ On peut aussi lire \`activity-index.json\` à la racine du site.
 
 ### 8. Algorithme exact de compression et d’encodage
 
-Étapes de **génération** (le LLM peut déléguer au script local §10) :
+Étapes de **génération** (le LLM peut déléguer, voir §10) :
 
 1. \`JSON.stringify\` de l’activité ⇒ texte UTF-8 ;
 2. **DEFLATE brut** (RFC 1951) des octets UTF-8 (pas de l’enveloppe
@@ -191,16 +211,16 @@ On peut aussi lire \`activity-index.json\` à la racine du site.
 4. URL finale : \`${page}?data=<payload>\`.
 
 Étapes de **lecture** (faîtes par la page) : Base64URL → DEFLATE → UTF-8 → JSON
-→ validation. Exemple équivalent en Python :
+→ validation. Script autonome équivalent (Python, aucune dépendance) :
 
 \`\`\`python
 import json, zlib, base64
 
-data = json.dumps(activity, ensure_ascii=False).encode("utf-8")
-raw = zlib.compressobj(level=9, wbits=-15)   # wbits=-15 ⇒ DEFLATE brut
-payload = raw.compress(data) + raw.flush()
-url_payload = base64.urlsafe_b64encode(payload).rstrip(b"=").decode()
-url = "https://netameow.github.io/mes-cours/test?data=" + url_payload
+def link(d):
+    raw = json.dumps(d, ensure_ascii=False, separators=(",", ":")).encode()
+    c = zlib.compressobj(9, zlib.DEFLATED, -15)   # DEFLATE brut (RFC 1951)
+    b = c.compress(raw) + c.flush()
+    return "https://netameow.github.io/mes-cours/test?data=" + base64.urlsafe_b64encode(b).decode().rstrip("=")
 \`\`\`
 
 ### 9. Limites de taille
@@ -218,16 +238,31 @@ url = "https://netameow.github.io/mes-cours/test?data=" + url_payload
 Au-delà : message d’erreur (lien trop long, charge trop volumineuse…).
 Les décompressions excessives sont bloquées (anti « zip bomb »).
 
-### 10. Génération et validation des données
+### 10. Générer le lien — par ordre de préférence
 
-Recommandation : produire l’URL avec l’outil local (aucun backend) :
+Ne produis **jamais** un quiz « natif » ni un autre format : le livrable est
+toujours le lien \`${page}?data=…\`. Selon tes moyens :
 
-\`\`\`bash
-# Depuis le dépôt website/
-npm run activity:link -- activite.json
-cat activite.json | npm run activity:link -- --base https://netameow.github.io/mes-cours/
-npm run activity:link -- activite.json --check   # valide seulement
-\`\`\`
+1. **Encodeur web — rien à exécuter** :
+   \`${encodeUrl}\`
+   Mets le JSON dans le paramètre \`json\` (encodé en URL) ; la page valide,
+   compresse et affiche le lien final. C’est la méthode recommandée pour un
+   assistant sans sandbox.
+
+2. **Script autonome** (exécutable dans un sandbox) : copie la fonction
+   \`link(d)\` du §8, appelle-la avec ton dictionnaire JSON.
+
+3. **Outil local** (depuis le dépôt) :
+
+   \`\`\`bash
+   npm run activity:link -- activite.json
+   cat activite.json | npm run activity:link -- --base https://netameow.github.io/mes-cours/
+   npm run activity:link -- activite.json --check   # valide seulement
+   \`\`\`
+
+4. **Repli sans code ni sandbox** : si tu ne peux rien exécuter, renvoie
+   uniquement le JSON de l’activité ; l’utilisateur le collera sur
+   \`${importUrl}\` pour obtenir le lien.
 
 Règles de génération :
 - rester **sobre** sur la longueur (des dizaines de questions dans un seul
@@ -235,7 +270,8 @@ Règles de génération :
   liens ou des réponses courtes) ;
 - la répétition compresse bien : préférer des textes avec du vocabulaire
   commun ;
-- toujours tester le lien une fois généré.
+- toujours tester le lien une fois généré, et ne jamais garantir un lien qui
+  n’a pas été produit par l’une de ces quatre méthodes.
 
 ### 11. Exemple complet de génération de lien
 
@@ -256,5 +292,7 @@ ${exampleUrl}
 - Support Markdown + LaTeX complet dans tous les champs textuels.
 - Références de cours documentées dans \`${indexUrl}\`.
 - Algorithme : JSON UTF-8 → DEFLATE brut → Base64URL sans padding.
+- Encodeurs : web \`${encodeUrl}\` (ou collage sur \`${importUrl}\`),
+  script Python §8, outil local \`npm run activity:link\`.
 `;
 }

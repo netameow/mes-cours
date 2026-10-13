@@ -60,6 +60,36 @@
 	margin-block-start: 0.4rem;
 }
 
+/* --- encodeur JSON → lien (/encode, /import) --- */
+.encoder-json {
+	width: 100%;
+	font-family: var(--sl-font-mono, ui-monospace, monospace);
+	font-size: 0.85rem;
+	line-height: 1.45;
+	color: var(--sl-color-text);
+	background: var(--sl-color-bg);
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.5rem;
+	padding: 0.6rem 0.7rem;
+	resize: vertical;
+}
+.encoder-json:focus-visible {
+	outline: 2px solid var(--sl-color-accent);
+	outline-offset: 2px;
+}
+.encoder-output {
+	margin-block-start: 1rem;
+}
+.encoder-link {
+	word-break: break-all;
+}
+.encoder-data {
+	display: block;
+	overflow-wrap: anywhere;
+	font-size: 0.8rem;
+	color: var(--sl-color-muted);
+}
+
 /* --- en-tête --- */
 .activity-header {
 	margin-block-end: 1rem;

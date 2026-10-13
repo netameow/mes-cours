@@ -1,0 +1,180 @@
+---
+// Petite boîte à outils « JSON → lien », utilisée par les pages
+// `/encode` et `/import` (aucun backend, tout côté client).
+import "../styles/activity.css";
+---
+
+<div class="activity-encoder" data-testid="activity-encoder">
+    <p class="activity-meta">
+        Collez le JSON d'une activité (format décrit dans{" "}
+        <a href={`${import.meta.env.BASE_URL}llms.txt`}>llms.txt</a>) ou
+        passez-le dans l'URL : <code>/encode?json=…</code> (encodé en URL).
+    </p>
+
+    <label for="encoder-json" class="activity-meta">
+        JSON de l'activité
+    </label>
+    <textarea
+        id="encoder-json"
+        class="encoder-json"
+        rows="10"
+        spellcheck="false"
+        placeholder='{"v":1,"t":"Titre","i":"Consignes…","d":[{"k":"mc","q":"…","o":["A","B"],"a":0}]}'
+    ></textarea>
+
+    <div class="activity-actions">
+        <button
+            type="button"
+            data-testid="encoder-run"
+            class="sl-button activity-btn primary"
+            id="encoder-run"
+        >
+            Générer le lien
+        </button>
+    </div>
+
+    <div class="encoder-output" data-testid="encoder-output" hidden>
+        <p class="activity-meta">Lien à partager :</p>
+        <p>
+            <a
+                id="encoder-link"
+                class="encoder-link"
+                data-testid="encoder-link"
+                target="_blank"
+                rel="noopener"
+            ></a>
+        </p>
+        <div class="activity-actions">
+            <button
+                type="button"
+                id="encoder-copy"
+                class="sl-button activity-btn secondary"
+            >
+                Copier
+            </button>
+        </div>
+        <details>
+            <summary>Voir la charge « data »</summary>
+            <code id="encoder-data" class="encoder-data"></code>
+        </details>
+    </div>
+
+    <div id="encoder-errors" class="activity-message" hidden></div>
+</div>
+
+<script>
+    import { encodeActivity } from "../lib/activity/codec.mjs";
+    import { validateActivity } from "../lib/activity/schema.mjs";
+
+    const root = document.querySelector(".activity-encoder");
+    const textarea = document.getElementById("encoder-json");
+    const runBtn = document.getElementById("encoder-run");
+    const output = document.querySelector('[data-testid="encoder-output"]');
+    const linkEl = document.getElementById("encoder-link");
+    const dataEl = document.getElementById("encoder-data");
+    const copyBtn = document.getElementById("encoder-copy");
+    const errorsBox = document.getElementById("encoder-errors");
+
+    const base = import.meta.env.BASE_URL.endsWith("/")
+        ? import.meta.env.BASE_URL
+        : `${import.meta.env.BASE_URL}/`;
+
+    function clearErrors() {
+        errorsBox.hidden = true;
+        errorsBox.textContent = "";
+    }
+
+    function showErrors(messages) {
+        output.hidden = true;
+        errorsBox.hidden = false;
+        const items = Array.isArray(messages) ? messages : [messages];
+        errorsBox.textContent = items
+            .map((message) => `• ${String(message)}`)
+            .join("\n");
+    }
+
+    function run() {
+        const raw = textarea.value.trim();
+        clearErrors();
+        if (raw === "") {
+            output.hidden = true;
+            return;
+        }
+        let parsed;
+        try {
+            parsed = JSON.parse(raw);
+        } catch (error) {
+            showErrors([`Le JSON n'est pas valide : ${error.message}`]);
+            return;
+        }
+        const validation = validateActivity(parsed);
+        if (!validation.ok) {
+            showErrors(validation.errors);
+            return;
+        }
+        try {
+            const data = encodeActivity(validation.activity);
+            const url = `${location.origin}${base}test?data=${data}`;
+            linkEl.href = url;
+            linkEl.textContent = url;
+            dataEl.textContent = data;
+            output.hidden = false;
+        } catch (error) {
+            showErrors([`Encodage impossible : ${error.message}`]);
+        }
+    }
+
+    function copyText(text, button) {
+        const done = () => {
+            const original = button.textContent;
+            button.textContent = "Copié ✓";
+            setTimeout(() => {
+                button.textContent = original;
+            }, 1800);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard
+                .writeText(text)
+                .then(done)
+                .catch(() => fallbackCopy(text, done));
+        } else {
+            fallbackCopy(text, done);
+        }
+    }
+
+    function fallbackCopy(text, done) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+            document.execCommand("copy");
+        } catch {
+            /* ignoré */
+        }
+        ta.remove();
+        done();
+    }
+
+    runBtn.addEventListener("click", run);
+    textarea.addEventListener("input", () => {
+        if (textarea.value.trim() === "") {
+            output.hidden = true;
+            clearErrors();
+        }
+    });
+    copyBtn.addEventListener("click", () => {
+        if (linkEl.href) copyText(linkEl.href, copyBtn);
+    });
+
+    // Mode « IA » : /encode?json=<JSON encodé en URL> → rendu immédiat.
+    const params = new URLSearchParams(location.search);
+    const initial = params.get("json");
+    if (initial) {
+        textarea.value = initial;
+        run();
+    }
+</script>

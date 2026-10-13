@@ -1,0 +1,21 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import ActivityEncoder from '../components/ActivityEncoder.astro';
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Importer une activité',
+		description: 'Collez le JSON d’une activité pour obtenir son lien.',
+		prev: false,
+		next: false,
+	}}
+>
+	<p>
+		Collez ici le JSON d'une activité (fourni par une IA ou rédigé à la main, format décrit dans{' '}
+		<a href={`${import.meta.env.BASE_URL}llms.txt`}>llms.txt</a>) puis cliquez sur
+		« Générer le lien ». L'encodage se fait dans votre navigateur.
+	</p>
+
+	<ActivityEncoder />
+</StarlightPage>
