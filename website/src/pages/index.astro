@@ -1,39 +1,94 @@
 ---
-import { getCollection } from 'astro:content';
-import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
-import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { getCollection } from "astro:content";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
 
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const base = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
 
-const docs = await getCollection('docs');
+const docs = await getCollection("docs");
+const collator = new Intl.Collator("fr", {
+    numeric: true,
+    sensitivity: "base",
+});
 
-const courses = new Map();
-for (const entry of docs) {
-	const [kind, course, ...rest] = entry.id.split('/');
-	if (kind !== 'cours' || !course) continue;
-	const isOverview = rest.length === 1 && rest[0] === course;
-	const current = courses.get(course);
-	if (!current || isOverview) courses.set(course, entry);
+function courseLabel(entry) {
+    const parts = (entry.filePath ?? entry.id).replace(/\\/g, "/").split("/");
+    return parts.find((part) => /^R1\./i.test(part)) ?? parts[0];
 }
 
-const courseList = [...courses.values()].sort((a, b) => a.id.localeCompare(b.id, 'fr'));
+/** @type {Map<string, { label: string, kind: string, entries: typeof docs }>} */
+const groups = new Map();
+for (const entry of docs) {
+    const [kind, courseSlug] = entry.id.split("/");
+    if (!kind || !courseSlug) continue;
+    const key = `${kind}:${courseSlug}`;
+    const group = groups.get(key) ?? {
+        label: courseLabel(entry),
+        kind,
+        courseSlug,
+        entries: [],
+    };
+    group.entries.push(entry);
+    groups.set(key, group);
+}
+
+function mainEntry(group) {
+    const sorted = [...group.entries].sort((a, b) =>
+        collator.compare(a.id, b.id),
+    );
+    return (
+        sorted.find((entry) => {
+            const [, slug, ...rest] = entry.id.split("/");
+            return rest.length === 1 && rest[0] === slug;
+        }) ?? sorted[0]
+    );
+}
+
+const toCard = (group) => ({ title: group.label, entry: mainEntry(group) });
+
+const courseList = [...groups.values()]
+    .filter((group) => group.kind === "cours")
+    .sort((a, b) => collator.compare(a.label, b.label))
+    .map(toCard);
+
+const annexList = [...groups.values()]
+    .filter((group) => group.kind === "annexes")
+    .sort((a, b) => collator.compare(a.label, b.label))
+    .map(toCard);
 ---
 
 <StarlightPage
-	frontmatter={{
-		title: 'Mes cours',
-		description: 'Notes de cours en informatique du BUT Informatique.',
-		template: 'splash',
-		prev: false,
-		next: false,
-		hero: {
-			tagline: 'Notes de cours en informatique, cours par cours, annexes comprises.',
-		},
-	}}
+    frontmatter={{
+        title: "Mes cours",
+        description: "Notes de cours en informatique du BUT Informatique.",
+        template: "splash",
+        prev: false,
+        next: false,
+        hero: {
+            tagline:
+                "Notes de cours en informatique, cours par cours, annexes comprises.",
+        },
+    }}
 >
-	<CardGrid stagger>
-		{courseList.map((entry) => (
-			<LinkCard title={entry.data.title} href={`${base}${entry.id}/`} />
-		))}
-	</CardGrid>
+    <section aria-label="Cours">
+        <h2>Cours</h2>
+        <CardGrid stagger>
+            {courseList.map(({ title, entry }) => (
+                <LinkCard title={title} href={`${base}${entry.id}/`} />
+            ))}
+        </CardGrid>
+    </section>
+
+    {annexList.length > 0 && (
+        <section aria-label="Annexes">
+            <h2>Annexes</h2>
+            <CardGrid stagger>
+                {annexList.map(({ title, entry }) => (
+                    <LinkCard title={title} href={`${base}${entry.id}/`} />
+                ))}
+            </CardGrid>
+        </section>
+    )}
 </StarlightPage>
