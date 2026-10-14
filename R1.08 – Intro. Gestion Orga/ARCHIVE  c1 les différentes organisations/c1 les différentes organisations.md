@@ -1,10 +1,3 @@
----
-Last edited time: 2026-10-07T10:36:00
-Tags: []
-Verification: unverified
-Owner:
-  - meow
----
 # 1. L'action collective
 
 **Organisation** = groupe de personnes, stable et durable, qui coordonne ses efforts pour atteindre des objectifs communs.
