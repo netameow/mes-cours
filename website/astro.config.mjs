@@ -7,6 +7,7 @@ import { SIDEBAR_SYNC_FILE, buildSidebar, vaultSignature } from './src/lib/vault
 import { obsidianCallouts } from './src/lib/obsidian-callouts.mjs';
 import { mathKatex } from './src/lib/math-katex.mjs';
 import { mermaidDiagrams } from './src/lib/mermaid.mjs';
+import { plantumlBlocks } from './src/lib/plantuml.mjs';
 import { wikiLinks } from './src/lib/wiki-links.mjs';
 
 const SITE = 'https://netameow.github.io';
@@ -33,7 +34,7 @@ export default defineConfig({
 	markdown: {
 		processor: satteri({
 			features: { math: true },
-			mdastPlugins: [obsidianCallouts, mathKatex, mermaidDiagrams, wikiLinks({ base: BASE })],
+			mdastPlugins: [obsidianCallouts, mathKatex, mermaidDiagrams, plantumlBlocks, wikiLinks({ base: BASE })],
 		}),
 	},
 	site: SITE,
@@ -44,7 +45,11 @@ export default defineConfig({
 			title: 'Mes cours',
 			description: 'Notes de cours en informatique',
 			defaultLocale: 'fr',
-			customCss: ['katex/dist/katex.min.css', './src/styles/mermaid.css'],
+			customCss: [
+				'katex/dist/katex.min.css',
+				'./src/styles/mermaid.css',
+				'./src/styles/plantuml.css',
+			],
 			components: {
 				Head: './src/components/Head.astro',
 				Sidebar: './src/components/Sidebar.astro',

@@ -19,6 +19,7 @@
     "github-slugger": "^2.0.0",
     "katex": "^0.16.47",
     "mermaid": "^12.2.0",
+    "plantuml-encoder": "^1.4.0",
     "rehype-highlight": "^7.0.2",
     "rehype-katex": "^7.0.1",
     "rehype-sanitize": "^6.0.0",
