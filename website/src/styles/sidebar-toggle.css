@@ -1,0 +1,53 @@
+/* Bouton de bascule des panneaux latéraux (navigation + table des matières). */
+
+.sidebar-toggle {
+	position: fixed;
+	inset-block-end: 1rem;
+	inset-inline-end: 1rem;
+	z-index: var(--sl-z-index-navbar, 40);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0;
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 50%;
+	background-color: var(--sl-color-bg-nav);
+	color: var(--sl-color-gray-2);
+	cursor: pointer;
+	transition:
+		color 0.2s ease,
+		border-color 0.2s ease;
+}
+
+.sidebar-toggle:hover,
+.sidebar-toggle:focus-visible {
+	color: var(--sl-color-white);
+	border-color: var(--sl-color-gray-4);
+}
+
+/* Masquage des panneaux latéraux. */
+
+/* La table des matières disparaît (panneau droit fixe, ou barre repliée en
+   petit écran) : le contenu occupe alors toute la largeur. */
+html.sidebars-hidden .right-sidebar-container {
+	display: none;
+}
+
+@media (min-width: 50rem) {
+	/* La navigation en colonne n'existe qu'à partir de 50rem ; en dessous c'est
+	   le menu mobile (popover), qu'on laisse intact. */
+	html.sidebars-hidden .sidebar {
+		display: none;
+	}
+
+	/* L'espace réservé à la sidebar (et utilisé par l'en-tête) est annulé. */
+	html.sidebars-hidden[data-has-sidebar] {
+		--sl-content-inline-start: 0;
+	}
+}
+
+html.sidebars-hidden[data-has-sidebar][data-has-toc] .main-pane {
+	width: 100%;
+}

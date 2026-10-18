@@ -10,12 +10,21 @@ const rawHref =
         : undefined;
 ---
 
+<script is:inline>
+	// Applique l'état « panneaux latéraux masqués » avant le premier rendu, pour
+	// éviter que les sidebars ne s'affichent un instant puis disparaissent.
+	if (localStorage.getItem('sidebars-hidden') === '1') {
+		document.documentElement.classList.add('sidebars-hidden');
+	}
+</script>
+
 {head.map(({ tag: Tag, attrs, content }) => (
     <Tag {...attrs} set:html={content} />
 ))}
 {rawHref && <link rel="alternate" type="text/markdown" href={rawHref} />}
 <script>
     import { setupMermaid } from '../lib/mermaid-client.mjs';
+    import '../scripts/sidebar-toggle.js';
 
     setupMermaid();
 </script>

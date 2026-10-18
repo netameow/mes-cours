@@ -49,6 +49,7 @@ export default defineConfig({
 				'katex/dist/katex.min.css',
 				'./src/styles/mermaid.css',
 				'./src/styles/plantuml.css',
+				'./src/styles/sidebar-toggle.css',
 			],
 			components: {
 				Head: './src/components/Head.astro',
