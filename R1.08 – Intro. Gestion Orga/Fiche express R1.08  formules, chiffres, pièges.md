@@ -12,6 +12,7 @@
 | % des voix | titres du propriétaire ÷ total des titres **qui votent** | Ch1 |
 | Valeur ajoutée | **CA − Consommations intermédiaires** | Ch2 |
 | Marge (Porter) | **Valeur − coût des activités** | Ch5 |
+| Coût unitaire | **Charges fixes ÷ quantité + charges variables par unité** | Ch5 |
 | Revenu par part | **RF ÷ Nb_parts** | Ch3 |
 | IR du foyer | **I_part (barème par tranches) × Nb_parts** | Ch3 |
 | IS | **Bénéfice × 25 %** | Ch3 |
@@ -32,6 +33,8 @@
 - **Barème IR par part** : 0 % jusqu'à 11 600 €, 11 % jusqu'à 29 579 €, 30 % jusqu'à 84 577 €, 41 % jusqu'à 181 917 €, 45 % au-dessus.
 - **Parts** : 1 célibataire, 2 couple, +½ pour chacun des 2 premiers enfants, +1 dès le 3e.
 - **Collectivités** : conseils élus pour **6 ans**. **Fournisseur principal** : environ **80 %** des achats.
+- **CSE** : obligatoire dès **11 salariés**. **AG d'une OBNL** : au moins **1 fois par an**.
+- **IS** : 50 % avant 1986, 37 % en 1990, 31 % en 2019, 25 % aujourd'hui.
 - **EI** : seul le patrimoine **professionnel** est saisissable (depuis **mai 2022**).
 
 ---
@@ -50,24 +53,30 @@
 | Salaire brut / net / coût total | net = brut − cot. salariales. Coût = brut + cot. patronales |
 | Recherche / développement | nouvelles connaissances sans application immédiate / solutions concrètes utilisables |
 | Push / pull | production anticipée et stock / production déclenchée par la commande |
+| Membre / bénévole / salarié (OBNL) | adhère, cotise, vote / gratuit, sans contrat / rémunéré, Code du travail |
+| Don / subvention / cotisation / parrainage | libre sans contrepartie / pouvoirs publics / membres / entreprise contre visibilité |
+| Association déclarée / d'utilité publique | dons et subventions / **+ legs et donations** (décret du Conseil d'État) |
+| AG / bureau | décide, élit le bureau, approuve les comptes / gère au quotidien |
+| Logistique amont / interne / aval | fournisseurs / à l'intérieur / clients |
+| Achats routiniers / exceptionnels | faible valeur ajoutée, prix / forte valeur ajoutée, qualité et SAV |
 | Marketing stratégique / opérationnel | segmenter, cibler, positionner / produit, prix, communication, distribution |
 | Activités principales / de soutien | produisent le bien ou service / aident les principales |
 | Société de personnes / de capitaux / mixte | SNC, SCS (illimitée, solidaire) / SA, SAS (limitée, cession libre) / SARL, EURL (limitée, cession encadrée) |
 
 ---
 
-## 4. Logiciels par fonction (synthèse PDF)
+## 4. Logiciels par fonction (diapos de Ch5)
 
 | Fonction | Logiciels et rôle |
 | --- | --- |
-| **Logistique** | **WMS** (entrepôt : emplacements, inventaire, trajets), **SCM** (chaîne logistique : commandes fournisseurs, livraisons), **TMS** (transport : tournées, livraisons) |
-| **Production** | **GPAO** (planification et suivi de la production), **GMAO** (maintenance des machines), **CAO/FAO** (plans, modèles 3D, pilotage des machines) |
-| **Marketing** | **CRM** (informations prospects et clients), gestion des réseaux sociaux, sites vitrine ou e-commerce, analyse de trafic (Google Analytics, Matomo) |
-| **Comptabilité et finance** | logiciel de comptabilité, gestion commerciale (devis, facture, règlement) |
-| **Ressources humaines** | **GPEC**, **LMS** (plateformes de formation), **ATS** (candidatures), gestion administrative (paie, congés) |
-| **R&D** | gestion de l'innovation, **knowledge management**, CAO |
-| **Approvisionnement** | **SRM** (relations fournisseurs), **SCM** |
-| **GSI** | ERP, CRM, WMS, paie... reliés par intégration (API, middleware, ESB) |
+| **Logistique** | **WMS** (entrepôt : emplacements, inventaire, trajets), **TMS** (transport : tournées, suivi des transporteurs), **SCM** (chaîne logistique : de l'approvisionnement à la livraison) |
+| **Production** | **GPAO** (planification et suivi de la production), **GMAO** (maintenance des machines), **CAO/FAO** (plans 3D, pilotage des machines) |
+| **Marketing** | **CRM** (clients et prospects), **SMM** (réseaux sociaux), site web vitrine ou e-commerce (**CMS** : WordPress, Drupal), **analytics** (Google Analytics, Matomo) |
+| **Comptabilité et finance** | logiciel de comptabilité (bilan, compte de résultat), gestion commerciale (devis, factures, règlements), **ERP** (comptabilité, stocks, ventes, achats dans un système unique) |
+| **Ressources humaines** | **GPEC** (besoins futurs), **ATS** (candidatures), **LMS** (formations), gestion administrative (paie, congés) |
+| **R&D** | gestion de l'innovation (idées, projets), **KMS** (partage des connaissances), **CAO** (modélisation, simulation) |
+| **Approvisionnement** | **SRM** (relations fournisseurs), **SCM** (flux d'approvisionnement), module achats de l'**ERP** (bons de commande, réception, facturation) |
+| **GSI** | **ERP** et applications métier, **API / middleware / ESB** (intégration), cybersécurité (**SIEM**, pare-feu, **EDR**) |
 
 ---
 
@@ -76,7 +85,7 @@
 - **État minoritaire = privée**, et exactement 50 % ne suffit pas. Si des titres ne votent pas, recalcule sur les titres votants.
 - **Taille** : 2 critères sur 3, pas un seul.
 - **IR** : le taux s'applique **par tranche**, après division par le nombre de parts.
-- **TVA** : redevable = entreprise, contribuable = consommateur. Utilise le **taux de chaque achat** pour la TVA déductible (anomalie de la diapo 18, voir Exercices corrigés).
+- **TVA** : redevable = entreprise, contribuable = consommateur. Utilise le **taux de chaque achat** pour la TVA déductible, celui de l'énoncé que tu as sous les yeux (exercice TVA : 400 € avec des achats à 20 %, 545 € avec des achats à 5,5 %, voir Exercices corrigés).
 - **Consommations intermédiaires** : ni salaires, ni impôts, ni immobilisations.
 - **Nationalité** d'une entreprise = **siège social**, pas la nationalité des propriétaires.
 - **EI** : pas de personnalité juridique mais elle peut embaucher. **SARL** = société **mixte**.
@@ -86,3 +95,7 @@
 - **Plombier** (artisanale) classé **tertiaire** dans la correction, alors que la diapo met la construction dans le secondaire.
 - **Fonctions de soutien = supports = secondaires** : trois noms pour la même chose selon les supports.
 - **GSI** : soutien ou principale selon que le SI est un outil ou le produit lui-même.
+- **OBNL** : la loi **interdit** de distribuer le surplus. Une association **de fait** n'a pas de personnalité juridique. **ONG** = association loi 1901 (pas de statut spécifique).
+- **Parrainage** : des ballons offerts contre un logo sont du parrainage, mais aussi des ressources matérielles selon la question posée.
+- **Économies d'échelle** : ce sont les **charges fixes** réparties sur plus d'unités, pas les charges variables.
+- **Principe de Peter** : promouvoir selon le **nouveau** poste, pas selon la réussite dans l'ancien.

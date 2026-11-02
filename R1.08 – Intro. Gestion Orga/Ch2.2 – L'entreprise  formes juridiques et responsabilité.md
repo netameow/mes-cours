@@ -32,9 +32,11 @@
 | Catégorie | Formes | Personnalité juridique | Responsabilité des propriétaires | Cession des titres |
 | --- | --- | --- | --- | --- |
 | **Entreprise individuelle** | EI | **non** : patrimoine pro et personnel ne font qu'un | un créancier professionnel ne peut saisir que le **patrimoine professionnel** (depuis mai 2022) | sans objet |
-| **Sociétés de personnes** | SNC, SCS | oui | **solidaire et illimitée** : les biens personnels des associés peuvent être saisis | encadrée (accord des autres associés) |
+| **Sociétés de personnes** | SNC, SCS (société en commandite simple, PDF), SCI (citée diapo 21) | oui | **solidaire et illimitée** : les biens personnels des associés peuvent être saisis | encadrée (accord des autres associés) |
 | **Sociétés de capitaux** | SA, SAS (et SASU) | oui | **limitée aux apports** | libre |
 | **Sociétés mixtes** | SARL, EURL | oui | **limitée aux apports** | encadrée |
+
+**Sociétés de personnes** : la personnalité des autres associés est primordiale, d'où l'accord nécessaire des autres associés pour vendre ses parts. **Sociétés de capitaux** : ce qui compte est le capital, la cession des actions est libre.
 
 **Personnalité juridique** : une société est une **personne morale** différente de ses associés. L'entreprise individuelle, elle, n'en a pas : l'entreprise et l'entrepreneur sont une seule personne juridique.
 

@@ -1,5 +1,5 @@
 > [!tip]
-> Clè-toi d'abord l'énoncé, essaie de répondre, puis ouvre le toggle pour vérifier. Les exercices et corrections viennent des diapos de cours (numéros de diapos indiqués). Deux corrections de diapos contiennent une anomalie : elles sont signalées ⚠️.
+> Clè-toi d'abord l'énoncé, essaie de répondre, puis ouvre le toggle pour vérifier. Les exercices et corrections viennent des diapos de cours (numéros de diapos indiqués), chapitres 1 à 5. Une correction contient une incohérence de classement : elle est signalée ⚠️.
 
 ---
 
@@ -103,19 +103,17 @@
 > 2. IS = 120 000 × 25 % = **30 000 €**.
 > 3. **Direct** : le redevable (la société qui verse l'IS) et le contribuable (la société qui le supporte) sont la même personne.
 
-> [!note]+ Exercice 3 – TVA (diapos 17-18) ⚠️ correction de la diapo à corriger
-> **Énoncé** : une entreprise achète des matières premières pour 1 000 € HT (TVA 5,5 %) et revend ses produits pour 3 000 € HT (TVA 20 %). (1) Prix TTC des matières achetées. (2) Prix TTC des produits vendus. (3) TVA à reverser à l'État. (4) Direct ou indirect, redevable, contribuable ?
+> [!note]+ Exercice 3 – TVA (diapos 17-18)
+> **Énoncé** : une entreprise achète des matières premières pour 1 000 € HT (TVA 20 %) et revend ses produits pour 3 000 € HT (TVA 20 %). (1) Prix TTC des matières achetées. (2) Prix TTC des produits vendus. (3) TVA à reverser à l'État. (4) Direct ou indirect, redevable, contribuable ?
 > 
-> **Correction de la diapo 18** : 1 200 €, 3 600 €, TVA à reverser 400 €. Mais elle applique **20 %** aux achats alors que l'énoncé dit **5,5 %**.
+> **Correction**
 > 
-> **Correction avec le taux de l'énoncé**
-> 
-> 1. 1 000 × 1,055 = **1 055 € TTC**.
+> 1. 1 000 × 1,20 = **1 200 € TTC**.
 > 2. 3 000 × 1,20 = **3 600 € TTC**.
-> 3. TVA collectée = 3 000 × 20 % = 600 €. TVA déductible = 1 000 × 5,5 % = 55 €. **TVA à reverser = 600 − 55 = 545 €**.
-> 4. **Indirect**. Redevable : l'**entreprise** (elle verse à l'État). Contribuable : les **clients** (ils supportent la TVA incluse dans le prix TTC).
+> 3. TVA collectée (ventes) = 3 000 × 20 % = 600 €. TVA déductible (achats) = 1 000 × 20 % = 200 €. **TVA à reverser = 600 − 200 = 400 €**.
+> 4. **Indirect**. Redevable : l'**entreprise** (elle verse 400 € à l'État). Contribuable : les **clients** (ils supportent la TVA incluse dans le prix TTC).
 > 
-> *Astuce* : la méthode est la même dans les deux versions (collectée moins déductible), seul le taux des achats change. En cas de doute en TD, demande au prof quelle version il attend.
+> *Variante d'une version précédente de la diapo* : si les achats étaient à **5,5 %**, on aurait 1 055 € TTC, TVA déductible 55 €, **TVA à reverser 545 €**. Même méthode, seul le taux des achats change.
 
 > [!note]+ Exercice 4 – Cotisations sociales et salaires (diapos 34-35)
 > **Énoncé** : salaire brut 2 500 €, cotisations salariales 20 %, patronales 25 %. (1) Cotisations salariales ? (2) Salaire net ? (3) Coût total employeur ? (4) Pourquoi baisser les cotisations réduit à la fois le coût du travail et les ressources de la Sécu ?
@@ -138,9 +136,88 @@
 
 ---
 
-# Auto-test sur les chapitres 4 et 5
+# Chapitre 4 – Les OBNL
 
-Les diapos de ces chapitres n'ont pas d'exercices. Voici des questions basées sur leurs objectifs.
+> [!note]+ Exercice 1 – Finalités et surplus (diapos 6-7)
+> **Énoncé** : MSF soigne des populations dans des zones de crise humanitaire. Un club de tennis de Bayonne propose des cours et des installations à ses adhérents. (1) Type de finalité de chacun ? (2) MSF réalise un excédent de 2 M€ : que doit-elle en faire ? (3) Le club dégage 5 000 € de bénéfice : peut-il les distribuer à ses membres fondateurs ?
+> 
+> **Correction**
+> 
+> 1. **MSF** → service à la **société** (elle soigne des populations, pas uniquement ses membres). **Club de tennis** → service à ses **membres** (cours et installations réservés aux adhérents).
+> 2. L'excédent **doit rester** dans l'organisation pour financer ses activités futures. Une OBNL n'a pas le droit de distribuer le surplus à ses membres ou dirigeants.
+> 3. **Non.** Le club est une OBNL (association loi 1901), la loi lui **interdit** de distribuer les 5 000 €. Ils doivent financer les activités futures du club (équipements, entretien des courts...).
+
+> [!note]+ Exercice 2 – Types d'OBNL (diapos 13-14)
+> **Énoncé** : (1) Des voisins organisent des barbecues de quartier sans aucune démarche administrative : quel type d'OBNL ? (2) La Croix-Rouge française est déclarée en préfecture et reconnue d'utilité publique par décret du Conseil d'État : quel type ? (3) La MAIF assure ses sociétaires et leur reverse des ristournes selon leur conduite : quel type ? (4) Différence entre une association déclarée et une association d'utilité publique ?
+> 
+> **Correction**
+> 
+> 1. **Association de fait** : aucune déclaration en préfecture, pas de personnalité juridique.
+> 2. **Association déclarée d'utilité publique** : déclarée en préfecture + reconnue par décret du Conseil d'État.
+> 3. **Mutuelle** : société à but non lucratif qui gère la protection de ses membres (assurance auto) et peut leur reverser des avantages.
+> 4. Une association déclarée peut recevoir des **dons et subventions**. Une association d'utilité publique, reconnue par l'État, peut **aussi** recevoir des **legs** (héritages) et des **donations notariées**.
+
+> [!note]+ Exercice 3 – Ressources de Bayonne Handball (diapos 21-22)
+> **Énoncé** : 150 membres paient 120 € de cotisation annuelle. La mairie verse 5 000 €. L'association vend des maillots à ses membres (bénéfice 2 000 €). Un équipementier offre 10 ballons contre son logo sur les maillots. (1) Classer chaque ressource financière. (2) Elle veut recruter une secrétaire à mi-temps : quel type de ressource humaine ? (3) Les 10 ballons : quel type de ressource ?
+> 
+> **Correction**
+> 
+> 1. 150 × 120 € = 18 000 € → **cotisations**. 5 000 € de la mairie → **subvention**. 2 000 € de vente de maillots → **activité économique**. 10 ballons contre le logo → **parrainage / sponsoring**.
+> 2. Une **salariée** : rémunérée en contrepartie de son travail, avec un contrat de travail et sous le Code du travail.
+> 3. Des **ressources matérielles** : des biens mis à disposition de l'association pour exercer son activité.
+
+---
+
+# Chapitre 5 – Les fonctions dans l'entreprise
+
+> [!note]+ Exercice 1 – Rôles du dirigeant et chaîne de valeur (diapos 6-7)
+> **Énoncé** : la PDG de Renault participe à un salon automobile pour représenter le groupe. De retour au siège, elle convoque une réunion d'urgence après la faillite d'un sous-traitant clé et débloque 50 M€ pour sécuriser un fournisseur alternatif. (1) Rôles de Mintzberg illustrés par chaque situation ? (2) Le changement de fournisseur impacte quelle activité de la chaîne de valeur de Porter ? Principale ou de soutien ?
+> 
+> **Correction**
+> 
+> 1. Salon automobile → rôle **relationnel** (représente l'entreprise auprès d'acteurs extérieurs, développe son réseau). Réunion d'urgence + décision d'investissement → rôle **décisionnel** (face à un imprévu, arbitre des ressources financières).
+> 2. Les **approvisionnements**, une activité de **soutien** : elle ne participe pas directement à la production vendue au client, mais fournit les matières premières à toutes les activités principales.
+
+> [!note]+ Exercice 2 – Logistique (diapos 14-15)
+> **Énoncé** : une boulangerie reçoit sa farine du meunier chaque matin (A). Elle stocke la farine, puis achemine les ingrédients vers le pétrissage et les pains cuits vers le conditionnement des sandwichs (B). Elle livre des sandwichs aux entreprises voisines chaque midi (C). (1) Type de logistique de chaque flux ? (2) Quel avantage concurrentiel apporte une livraison fiable et rapide ?
+> 
+> **Correction**
+> 
+> 1. **A** → logistique **amont**. **B** → logistique **interne**. **C** → logistique **aval**.
+> 2. Avantage **commercial** : une livraison fiable et rapide améliore la satisfaction des clients, favorise leur fidélisation et différencie la boulangerie des concurrents sans ce service.
+
+> [!note]+ Exercice 3 – Production et économies d'échelle (diapos 21-22)
+> **Énoncé** : une imprimerie a 60 000 € de charges fixes annuelles. Chaque livre imprimé coûte 4 € de charges variables. (1) Coût unitaire pour 3 000 livres ? (2) Pour 30 000 livres ? (3) Quel phénomène, quel mode de production en profite le plus ? (4) 200 exemplaires d'un livre personnalisé produits seulement après la commande : Push ou Pull ?
+> 
+> **Correction**
+> 
+> 1. Charges fixes par livre = 60 000 ÷ 3 000 = 20 €, + 4 € de charges variables = **24 €**.
+> 2. 60 000 ÷ 30 000 = 2 €, + 4 € = **6 €**.
+> 3. Les **économies d'échelle** : plus on produit, plus le coût unitaire baisse, car les charges fixes sont réparties sur davantage d'unités. La **grande série** en profite le plus.
+> 4. **Pull** : la commande du client déclenche la production, il n'y a pas de stock constitué à l'avance, car chaque livre est unique.
+
+> [!note]+ Exercice 4 – Marketing, cas Patagonia (diapos 28 à 31)
+> **Énoncé** : Patagonia opère sur le marché de l'habillement outdoor, dont les consommateurs se distinguent par leur rapport à l'environnement, leur niveau de prix acceptable et leur type de pratique. Elle cible les consommateurs très engagés dans une démarche écoresponsable, prêts à payer cher, et se positionne comme la marque leader de la responsabilité environnementale. Pour décliner : vêtements en matières recyclées et réparations, prix élevés (veste à 400 €), campagnes militantes, boutiques en propre et site. (1) Les 3 étapes du marketing stratégique ? (2) Les 4 P du marketing opérationnel ?
+> 
+> **Correction**
+> 
+> 1. **Segmentation** : marché découpé selon le rapport à l'environnement, le niveau de prix acceptable et le type de pratique. **Ciblage** : consommateurs très engagés écoresponsables, prêts à payer un prix élevé. **Positionnement** : marque leader de la responsabilité environnementale dans l'outdoor.
+> 2. **Produit** : vêtements en matières recyclées + réparation. **Prix** : élevé (400 € la veste), cohérent avec le positionnement premium éco. **Communication** : campagnes militantes sur ses engagements. **Distribution** : boutiques en propre + e-commerce, ce qui contrôle l'image.
+
+> [!note]+ Exercice 5 – Ressources humaines, cas Michelin (diapos 43-44)
+> **Énoncé** : Michelin verse à ses commerciaux une prime individuelle basée sur leurs ventes. Suite à des tensions (refus de s'entraider), la direction envisage des primes collectives par équipe régionale. Par ailleurs un commercial brillant promu chef des ventes régional voit, un an après, ses équipes démotivées et les résultats baisser. (1) L'individualisation des primes motive-t-elle ? Quel inconvénient ici ? (2) Quelle solution la DRH envisage-t-elle ? (3) Quel principe illustre le commercial promu, que préconise-t-il ?
+> 
+> **Correction**
+> 
+> 1. Oui, c'est un outil de motivation efficace (chacun est récompensé selon sa performance), mais elle génère une **baisse de coopération** entre collègues (chacun garde ses contacts et méthodes pour ne pas aider les autres).
+> 2. Des **primes collectives** par équipe régionale : elles alignent intérêts individuels et collectifs et encouragent l'entraide.
+> 3. Le **principe de Peter** : dans une hiérarchie, un salarié tend à être promu jusqu'à son niveau d'incompétence (être excellent commercial ≠ être excellent manager). Il préconise de promouvoir un salarié **uniquement** s'il dispose des compétences du **nouveau** poste, pas seulement parce qu'il excelle dans son poste actuel.
+
+---
+
+# Questions complémentaires sur les chapitres 4 et 5
+
+Questions basées sur les objectifs des synthèses, pour réviser au-delà des exercices des diapos.
 
 > [!note]+ Citer les 3 types de ressources humaines d'une OBNL
 > **Membres** (adhérents), **bénévoles**, **salariés**.
@@ -165,3 +242,12 @@ Les diapos de ces chapitres n'ont pas d'exercices. Voici des questions basées s
 
 > [!note]+ Pourquoi un fournisseur principal à 80 % et des fournisseurs secondaires ?
 > Pour garder une **mise en concurrence permanente** et éviter la **dépendance** à un seul fournisseur, risque des relations à long terme très intégrées.
+
+> [!note]+ Citer les 5 ressources financières d'une OBNL et les distinguer
+> **Dons** (libres, sans contrepartie), **subventions** (pouvoirs publics, missions d'intérêt général), **cotisations** (membres, en échange de l'accès aux services), **activités économiques** (vente de biens ou services par l'OBNL), **parrainage** (entreprise, en échange de visibilité).
+
+> [!note]+ Quelle différence entre membre, bénévole et salarié d'une OBNL ?
+> **Membre** : adhère, paie une cotisation, vote à l'AG. **Bénévole** : pas forcément membre, contribue gratuitement, sans contrat ni rémunération. **Salarié** : rémunéré, contrat de travail et Code du travail.
+
+> [!note]+ Citer les logiciels d'une fonction et leur rôle (exemple : la logistique)
+> **WMS** (entrepôt : emplacements, inventaire), **TMS** (transport : tournées, suivi des transporteurs), **SCM** (chaîne logistique : de l'approvisionnement à la livraison). Même réflexe pour les autres fonctions : voir la Fiche express, section logiciels.

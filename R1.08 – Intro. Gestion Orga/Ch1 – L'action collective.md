@@ -32,7 +32,7 @@ Les **5 critères** à vérifier (ils doivent tous être présents) :
 
 📍 *Diapos 8 à 11*
 
-**Division du travail** (chacun se spécialise dans une tâche) → **besoin de coordination** (il faut articuler les tâches pour atteindre l'objectif commun) → **mécanismes de coordination** (5 retenus sur les 6 identifiés par Mintzberg).
+**Division du travail** (chacun se spécialise dans une tâche) → **besoin de coordination** (il faut articuler les tâches pour atteindre l'objectif commun) → **mécanismes de coordination** (5 retenus sur les 6 identifiés par Mintzberg (1973)).
 
 | # | Mécanisme | Principe | Exemples des diapos | Comment le reconnaître |
 | --- | --- | --- | --- | --- |
@@ -85,7 +85,7 @@ flowchart TD
 La chaîne à retenir :
 
 1. **Apports** : les créateurs apportent de l'argent ou des biens pour démarrer. Leur somme = le **capital**.
-2. **Titres** : chaque apporteur reçoit des **actions** ou **parts sociales**. **1 titre = 1 voix** en assemblée générale.
+2. **Titres** : chaque apporteur reçoit des **actions** ou **parts sociales**. Ils donnent droit à une part des bénéfices et au vote : **1 titre = 1 voix** en assemblée générale.
 3. **Contrôle** : celui qui détient **plus de 50 % des voix exprimées** décide seul. Si c'est l'**État** (ou une collectivité) → entreprise **publique**, sinon **privée**.
 
 **Formules** : Nb de titres = Apport ÷ Valeur nominale d'un titre, puis % des voix = titres du propriétaire ÷ total des titres.
@@ -108,10 +108,10 @@ M. A est actionnaire majoritaire et ce n'est pas l'État → entreprise **privé
 
 **Méthode en 4 étapes** :
 
-4. Calculer le nombre de titres de chacun (apport ÷ valeur nominale).
-5. Calculer le % de chacun.
-6. Si certains titres ne votent pas, les retirer du total avant de recalculer.
-7. Chercher qui dépasse 50 % : si c'est l'État → **publique**, sinon → **privée**.
+1. Calculer le nombre de titres de chacun (apport ÷ valeur nominale).
+2. Calculer le % de chacun.
+3. Si certains titres ne votent pas, les retirer du total avant de recalculer.
+4. Chercher qui dépasse 50 % : si c'est l'État → **publique**, sinon → **privée**.
 
 > [!warning]
 > **Piège (diapo 19)** : l'État peut être présent au capital et rester minoritaire (20 % par exemple). Pour être publique, il faut qu'il détienne **plus de 50 %** des voix exprimées. Et exactement 50 % ne suffit pas non plus.

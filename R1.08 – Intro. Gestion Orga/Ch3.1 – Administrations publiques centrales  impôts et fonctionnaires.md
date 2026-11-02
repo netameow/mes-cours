@@ -41,7 +41,7 @@ Deux mots à ne pas confondre : le **redevable** verse l'argent à l'État, le *
 
 📍 *Diapos 7 à 11*
 
-> L'IR est un impôt **direct** calculé sur les revenus d'un **foyer fiscal**. Il est **progressif** : chaque taux ne s'applique qu'à la **fraction du revenu comprise dans sa tranche**.
+> L'IR est un impôt **direct** calculé sur les revenus d'un **foyer fiscal** (salaires, pensions, revenus locatifs, revenus financiers...). Il est **progressif** : chaque taux ne s'applique qu'à la **fraction du revenu comprise dans sa tranche**.
 
 **Barème (revenus 2025, déclaration 2026)**
 
@@ -81,7 +81,10 @@ Deux mots à ne pas confondre : le **redevable** verse l'argent à l'État, le *
 
 **Méthode** : calculer le résultat (CA − charges), puis appliquer le taux. Exemple : CA 1 500 000 €, charges 500 000 € → bénéfice 1 000 000 € → IS = **250 000 €**.
 
-*Pour info (synthèse PDF)* : un taux réduit de 15 % existe pour une partie du bénéfice (42 500 €) selon le CA et la composition du capital.
+*Pour info (synthèse PDF)* : un taux réduit de 15 % existe pour une partie du bénéfice (42 500 €) selon le CA et la composition du capital. Le taux varie selon la taille et le montant des bénéfices.
+
+> [!note]+ Histoire de l'IS (synthèse PDF, pour la culture)
+> Le taux de l'IS baisse au fil du temps : avant 1986 : 50 %, en 1990 : 37 %, en 2019 : 31 %, aujourd'hui 25 %.
 
 ### 4. L'optimisation fiscale
 
@@ -111,8 +114,8 @@ Exemple : la société Google Irlande vend le droit d'utiliser la marque Google 
 
 **Exemple (synthèse PDF)** : un meuble acheté 100 € HT et revendu 150 € HT, taux 20 %. TVA déductible = 20 €, TVA collectée = 30 € → l'entreprise reverse **10 €** à l'État.
 
-> [!warning]
-> **Erreur dans la correction de la diapo 18** : l'énoncé dit que les matières premières sont à **5,5 %**, mais la correction utilise 20 %. Avec le bon taux : 1 000 × 1,055 = **1 055 € TTC**, TVA déductible = **55 €**, TVA à reverser = 600 − 55 = **545 €** (et non 400 €). Détail dans la page Exercices corrigés.
+> [!tip]
+> **Exercice TVA (diapos 17-18)** : dans la version actuelle des diapos, énoncé et correction sont cohérents : achats 1 000 € HT à **20 %**, ventes 3 000 € HT à 20 % → TVA collectée 600 €, déductible 200 €, **TVA à reverser = 400 €**. Une version précédente de la diapo 17 donnait **5,5 %** pour les achats : dans ce cas TTC = 1 055 €, déductible = 55 €, à reverser = **545 €**. La méthode reste la même (collectée − déductible), seul le taux des achats change. Utilise toujours le taux indiqué dans l'énoncé que tu as sous les yeux. Détail dans la page Exercices corrigés.
 
 ---
 
@@ -137,8 +140,8 @@ Les administrations centrales emploient des **fonctionnaires d'État** et des **
 
 Ses **2 buts** :
 
-6. **Continuité** du service public : empêcher un gouvernement élu de remplacer les fonctionnaires par ses partisans.
-7. **Neutralité** du service public : permettre au fonctionnaire d'appliquer la loi plutôt que des ordres partisans, sans risque pour sa carrière.
+1. **Continuité** du service public : empêcher un gouvernement élu de remplacer les fonctionnaires par ses partisans.
+2. **Neutralité** du service public : permettre au fonctionnaire d'appliquer la loi plutôt que des ordres partisans, sans risque pour sa carrière.
 
 ---
 
